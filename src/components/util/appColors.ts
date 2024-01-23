@@ -1,0 +1,20 @@
+export const appColors={
+primary_color:"rgba(35, 166, 240, 1)",
+secondary: "#23856D",
+text_color:"rgba(37, 43, 66, 1)",
+second_text_color:"rgba(115, 115, 115, 1)",
+light_text_color:"rgba(255, 255, 255, 1)",
+primary_text_color:"rgba(35, 166, 240, 1)",
+danger_color:"rgba(231, 64, 64, 1)",
+secondary_color1:"rgba(35, 133, 109, 1)",
+success_text_color:"rgba(45, 192, 113, 1)",
+success_color:"rgba(45, 192, 113, 1)",
+alert_color:"rgba(231, 124, 64, 1)",
+overlaycolor:  "#FAFAFA",
+dark_background_color: "#252B42",
+secondary_star: "rgba(243, 205, 3, 1)",
+muted_color:"#BDBDBD",
+white:"#FFFFFF",
+light_gray:"rgba(250, 250, 250, 1)",
+light_gray2:" #ECECEC"
+}
