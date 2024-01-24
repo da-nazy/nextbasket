@@ -26,7 +26,7 @@ export default function Cart({handleClose}:props) {
   const totalPrice=():number=>{
         let total=0;
            cartList&&cartList.forEach((value)=>{
-            total+=Number.parseFloat(`${value.price}`)
+            total+=(Number.parseFloat(`${value.price}`)*Number.parseInt(`${value.quantity}`))
            })
   return total;
   }
