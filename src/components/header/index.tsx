@@ -119,10 +119,9 @@ const styles=makeStyles()((theme)=>({
     }
     },
     navCont:{
-     [theme.breakpoints.between('xs',935)]:{
-      //  border:'1px solid red',
-      //  backgroundColor:'green'
-     }
+     '@media (max-width:1004px)': {
+        display:'none !important'
+    }
     },
     icoTxt:{
         fontSize: "12px",
@@ -139,7 +138,10 @@ const styles=makeStyles()((theme)=>({
     display:'flex',
     flexDirection:'row',
     gap:theme.spacing(2),
-    alignItems:'center'
+    alignItems:'center',
+    [theme.breakpoints.down('sm')]:{
+       display:'none !important'
+    }
     },
     logRegBtn:{
         fontSize: "14px",
@@ -184,7 +186,10 @@ letterSpacing:"0.1px",
      height:'84px',
      display:'flex',
      justifyContent:'center',
-     flexDirection:'row'
+     flexDirection:'row',
+     [theme.breakpoints.down('sm')]:{
+        marginTop:'0px !important'
+    }
     },
     subCont:{
         width:'90%',
