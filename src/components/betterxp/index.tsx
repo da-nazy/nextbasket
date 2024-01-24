@@ -61,7 +61,11 @@ const styles=makeStyles()((theme)=>({
     flexDirection:'column',
     justifyContent:'space-between',
      minHeight:'350px',
-     alignItems:'center'
+     alignItems:'center',
+     [theme.breakpoints.down('md')]:{
+      width:'80%',
+      gap:theme.spacing(3)
+     }
   },
   section:{
     color:theme.colors.primary_text_color,
