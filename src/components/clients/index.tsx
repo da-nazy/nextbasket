@@ -14,14 +14,15 @@ export default function Clients() {
   return (
     <Box className={classes.container}>
      <Box className={classes.sub}>
-     <Image width={103} height={34}  src={fa_brand_1} alt="brands" />
-      <Image width={83} height={59}  src={fa_brand_2} alt="brands" />
-      <Image width={102} height={75}  src={fa_brand_3} alt="brands" />
-      <Image width={103} height={42}  src={fa_brand_4} alt="brands" />
-      <Image width={104} height={62}  src={fa_brand_5} alt="brands" />
-      <Image width={76} height={72}  src={fa_brand_6} alt="brands" />
+   <Box className={classes.item}> <Image width={103} height={34}  src={fa_brand_1} alt="brands" /></Box>
+   <Box className={classes.item}>  <Image width={83} height={59}  src={fa_brand_2} alt="brands" /></Box>
+   <Box className={classes.item}>   <Image width={102} height={75}  src={fa_brand_3} alt="brands" /></Box>
+   <Box className={classes.item}>  <Image width={103} height={42}  src={fa_brand_4} alt="brands" /></Box>
+   <Box className={classes.item}>  <Image width={104} height={62}  src={fa_brand_5} alt="brands" /></Box>
+   <Box className={classes.item}>   <Image width={76} height={72}  src={fa_brand_6} alt="brands" /></Box>
+     </Box> 
      </Box>
-    </Box>
+    
   )
 }
 
@@ -34,12 +35,28 @@ const styles=makeStyles()((theme)=>({
         minHeight:'175px',
         backgroundColor:theme.colors.light_gray
     },
+    item:{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
     sub:{
         width:'80%',
-        display:'flex',
-        flexDirection:'row',
+        display:'grid',
+        gridTemplateColumns:'1fr 1fr 1fr 1fr 1fr 1fr',
         gap:theme.spacing(3),
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'center',
+
+        [theme.breakpoints.down('lg')]:{
+          gridTemplateColumns:'1fr 1fr 1fr  ',
+          paddingBottom:theme.spacing(3)
+        },
+        [theme.breakpoints.down('md')]:{
+          gridTemplateColumns:'1fr 1fr   ',
+        },
+        [theme.breakpoints.down('sm')]:{
+          gridTemplateColumns:'1fr  ',
+        },
     }
 }))
