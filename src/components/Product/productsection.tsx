@@ -253,7 +253,8 @@ const styles=makeStyles()((theme)=>({
     display:'flex',
     flexDirection:'row',
     gap:theme.spacing(4),
-    marginTop:theme.spacing(3)
+    marginTop:theme.spacing(3),
+   
     },
     img:{
      position:'relative',

@@ -93,7 +93,10 @@ const styles=makeStyles()((theme)=>({
      display:'grid',
      minHeight:'400px',
      gridTemplateColumns:"1.5fr 1fr",
-     width:'80%'
+     width:'80%',
+     [theme.breakpoints.down('md')]:{
+      gridTemplateColumns:'1fr'
+     }
     },
     article:{
     display:'flex',
