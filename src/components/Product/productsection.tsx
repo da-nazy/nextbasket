@@ -240,9 +240,14 @@ const styles=makeStyles()((theme)=>({
        minHeight:'500px',
        display:'grid',
        gridTemplateColumns:'1fr 1fr',
-       gap:theme.spacing(4)
+       gap:theme.spacing(4),
+       [theme.breakpoints.down('lg')]:{
+        gridTemplateColumns:'1fr'
+       }
     },
     imgcont:{
+      display:'grid',
+      width:'80%'
     },
     thumb:{
     display:'flex',
