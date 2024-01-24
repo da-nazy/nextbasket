@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ClassNames } from '@emotion/react';
 import { useSelector,useDispatch } from 'react-redux';
 import { appStore, product } from '../util';
-import { REMOVE_CART } from '@/store/cart';
+import { REMOVE_CART,INCREMENT_CART, DECREMENT_CART } from '@/store/cart';
 import useToastAlert from '../hooks/useToastAlert';
 
 type props={
@@ -29,6 +29,13 @@ export default function Cart({handleClose}:props) {
             total+=Number.parseFloat(`${value.price}`)
            })
   return total;
+  }
+  const handleIncrement=(item:product)=>{
+   dispatch(INCREMENT_CART(item));
+  }
+
+  const handleDecrement=(item:product)=>{
+   dispatch(DECREMENT_CART(item))
   }
   return (
   <Box className={classes.container}>
@@ -52,9 +59,9 @@ export default function Cart({handleClose}:props) {
        </Box>
        <Box className={classes.removeAdd}>
          <Box className={classes.subAdd}>
-           <IconButton disabled={value.quantity===1} color="primary" size="small"><Remove/></IconButton>
+           <IconButton disabled={value.quantity===1} onClick={()=>handleDecrement(value)}  color="primary" size="small"><Remove/></IconButton>
            <Typography className={classes.price} >{value.quantity}</Typography>
-           <IconButton color="primary" size="small"><Add/></IconButton>
+           <IconButton onClick={()=>handleIncrement(value)}  color="primary" size="small"><Add/></IconButton>
          </Box>
          <Button onClick={()=>handleRemoveCart(value)} variant={"outlined"}>Remove</Button></Box>
    </Paper>
@@ -157,3 +164,5 @@ letterSpacing:" 0.1px"
     letterSpacing: "0.1px"
 }
 }))
+
+

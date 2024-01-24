@@ -28,12 +28,15 @@ export const cartSlice=createSlice({
        
      },
      INCREMENT_CART:(state,action)=>{
-        let isExist=state.find(action.payload.id);
-     
+        let isExist=state.find((value)=>value.id===action.payload.id);
+        let value=state;
+        console.log(isExist);
         if(isExist){
             // update
             if(isExist.quantity){
-                isExist.quantity+=action.payload.data;
+                isExist.quantity+=1;
+                console.log(isExist);
+                Storage.saveItem(StorageKey.Cart,[...value,isExist]);  
             }
         }else{
             // no cart found
@@ -41,12 +44,15 @@ export const cartSlice=createSlice({
         }
      },
      DECREMENT_CART:(state,action)=>{
-        let isExist=state.find(action.payload.id);
-     
+        let isExist=state.find((value)=>value.id===action.payload.id);
+        let value=state;
+        console.log(isExist);
         if(isExist){
             // update
             if(isExist.quantity){
-                isExist.quantity-=action.payload.data;
+                isExist.quantity-=1;
+                console.log(isExist);
+                Storage.saveItem(StorageKey.Cart,[...value,isExist]);  
             }
         }else{
             // no cart found
@@ -58,5 +64,5 @@ export const cartSlice=createSlice({
     }
 })
 
-export const{ADD_CART,REMOVE_CART}=cartSlice.actions;
+export const{ADD_CART,REMOVE_CART,INCREMENT_CART,DECREMENT_CART}=cartSlice.actions;
 export default cartSlice.reducer;
