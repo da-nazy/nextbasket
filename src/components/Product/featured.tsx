@@ -90,6 +90,12 @@ const styles=makeStyles()((theme)=>({
      display:'grid',
      gridTemplateColumns:'1fr 1fr 1fr',
      gap:theme.spacing(3),
+     [theme.breakpoints.down('sm')]:{
+      gridTemplateColumns:'1fr 1fr'
+     },
+     [theme.breakpoints.down('sm')]:{
+        gridTemplateColumns:'1fr '
+       }
      
     },
     productHd:{
