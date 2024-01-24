@@ -15,6 +15,7 @@ export const cartSlice=createSlice({
         }
         if(!isExist){
             let newvalue=state;
+            action.payload.quantity=1;
             newvalue.push(action.payload);
             Storage.saveItem(StorageKey.Cart,newvalue);
             state=newvalue;
@@ -23,7 +24,8 @@ export const cartSlice=createSlice({
      REMOVE_CART:(state,action)=>{
         let value=state.filter((value)=>value.id!==action.payload.id);
         Storage.saveItem(StorageKey.Cart,value);
-        state=value;
+        return state.filter((value)=>value.id!==action.payload.id);
+       
      },
      INCREMENT_CART:(state,action)=>{
         let isExist=state.find(action.payload.id);
