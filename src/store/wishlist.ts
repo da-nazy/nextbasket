@@ -21,9 +21,11 @@ export const wishlistSlice=createSlice({
         }
      },
      REMOVE_WISHLIST:(state,action)=>{
-        let value=state.filter((value)=>value.id!==action.payload.id);
-        Storage.saveItem(StorageKey.Wishlist,value);
-        state=value;
+        let newItem=state.filter((value)=>value.id!==action.payload.id);
+        Storage.saveItem(StorageKey.Wishlist,newItem);
+         //    state=newItem;
+        return state.filter((value)=>value.id!==action.payload.id);
+       
      },
    
     }

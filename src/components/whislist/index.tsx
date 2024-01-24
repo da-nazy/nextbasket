@@ -4,14 +4,24 @@ import { makeStyles } from 'tss-react/mui'
 import { ArrowBack, Cancel } from '@mui/icons-material';
 import product1 from '../../assets/img/product/product1.png';
 import Image from 'next/image';
-import { ClassNames } from '@emotion/react';
+import { useSelector,useDispatch } from 'react-redux';
+import { appStore, product } from '../util';
+import { REMOVE_WISHLIST } from '@/store/wishlist';
+import useToastAlert from '../hooks/useToastAlert';
+import store from '@/store';
 type props={
   handleClose:()=>void
 }
 export default function Wishlist({handleClose}:props) {
   const theme=useTheme();
   const {classes}=styles();
-
+  const alert=useToastAlert();
+  const dispatch=useDispatch();
+  const wishList=useSelector((appStore:appStore)=>appStore.wishlist);
+  const handleRemoveItem=(item:product)=>{
+    dispatch(REMOVE_WISHLIST(item));
+    alert({message:"Item Removed",type:"success"});
+  }
   return (
   <Box className={classes.container}>
     <Box className={classes.head}>
@@ -24,38 +34,18 @@ export default function Wishlist({handleClose}:props) {
       
     </Box>
   <Box className={classes.content}>
-  <Paper className={classes.card}>
-       <Image width={100} height={100} alt="products" src={product1}/>
+    {wishList&&wishList.length>0?wishList.map((value,key)=>{
+      return(
+<Paper className={classes.card} key={key}>
+       <Image width={100} height={100} alt="products" src={value.thumbnail?value.thumbnail:product1}/>
         <Box>
-          <Typography className={classes.name}>Powerfull chair</Typography>
-          <Typography className={classes.price}>$1,139.33</Typography>
+          <Typography className={classes.name}>{value.brand}</Typography>
+          <Typography className={classes.price}>${value.price}</Typography>
         </Box>
-        <Box><Button variant={"outlined"}>Remove</Button></Box>
+        <Box><Button onClick={()=>handleRemoveItem(value)} variant={"outlined"}>Remove</Button></Box>
     </Paper>
-    <Paper className={classes.card}>
-       <Image width={100} height={100} alt="products" src={product1}/>
-        <Box>
-          <Typography className={classes.name}>Powerfull chair</Typography>
-          <Typography className={classes.price}>$1,139.33</Typography>
-        </Box>
-        <Box><Button variant={"outlined"}>Remove</Button></Box>
-    </Paper>
-    <Paper className={classes.card}>
-       <Image width={100} height={100} alt="products" src={product1}/>
-        <Box>
-          <Typography className={classes.name}>Powerfull chair</Typography>
-          <Typography className={classes.price}>$1,139.33</Typography>
-        </Box>
-        <Box><Button variant={"outlined"}>Remove</Button></Box>
-    </Paper>
-    <Paper className={classes.card}>
-       <Image width={100} height={100} alt="products" src={product1}/>
-        <Box>
-          <Typography className={classes.name}>Powerfull chair</Typography>
-          <Typography className={classes.price}>$1,139.33</Typography>
-        </Box>
-        <Box><Button variant={"outlined"}>Remove</Button></Box>
-    </Paper>
+      )
+    }):<Typography>No Item Found!</Typography>}
   </Box>
 
   </Box>
