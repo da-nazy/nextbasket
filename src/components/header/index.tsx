@@ -22,6 +22,12 @@ import Wishlist from '../whislist';
 import Cart from '../cart';
 import { useSelector } from 'react-redux';
 import { appStore } from '../util';
+
+// for product menu
+import ic_menu from '../../assets/img/homenav/ic_menu.png'
+import ic_cart from '../../assets/img/homenav/ic_cart.png'
+import ic_search from '../../assets/img/homenav/ic_search.png'
+
 export default function Header() {
     const theme=useTheme();
     const {classes}=styles();
@@ -96,6 +102,18 @@ export default function Header() {
                 </IconButton>
             </Box>
         </Box>
+        <Box className={classes.homeNav}>
+                <IconButton>
+                <Image src={ic_search.src} width={24} height={24} alt='search'/>
+                </IconButton>
+                <IconButton>
+                <Image src={ic_cart.src} width={24} height={24} alt='search'/>
+                </IconButton>
+                <IconButton>
+                <Image src={ic_menu.src} width={24} height={24} alt='search'/>
+                </IconButton>
+               
+        </Box>
      </Box>
      </Box>
      
@@ -106,6 +124,14 @@ export default function Header() {
 const styles=makeStyles()((theme)=>({
     container:{
    
+    },
+    homeNav:{
+     display:'none',
+     [theme.breakpoints.down('sm')]:{
+        display:'flex ',
+        flexDirection:'row',
+        gap:theme.spacing(3),
+    }
     },
     icoCont:{
     display:'flex',
