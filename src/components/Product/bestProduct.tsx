@@ -119,6 +119,15 @@ const styles=makeStyles()((theme)=>({
     products:{
         display:'grid',
         gridTemplateColumns:'1fr 1fr 1fr 1fr',
-        gap:theme.spacing(3)
+        gap:theme.spacing(3),
+        [theme.breakpoints.down('lg')]:{
+          gridTemplateColumns:'1fr 1fr 1fr'
+        },
+        [theme.breakpoints.down('md')]:{
+          gridTemplateColumns:'1fr 1fr '
+        },
+        [theme.breakpoints.down('sm')]:{
+          gridTemplateColumns:'1fr'
+        }
     }
 }))
