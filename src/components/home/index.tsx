@@ -165,6 +165,7 @@ const styles=makeStyles()((theme)=>({
      display:'flex',
      flexDirection:"column",
      flex:1,
+     minHeight:'500px',
      alignItems:'center',
      paddingTop:theme.spacing(5),
     },
@@ -173,7 +174,11 @@ const styles=makeStyles()((theme)=>({
        minHeight:'600px',
        display:'grid',
        gridTemplateColumns:"1fr 1fr",
-       gap:theme.spacing(3)
+       gap:theme.spacing(3),
+       [theme.breakpoints.down('md')]:{
+        gridTemplateColumns:"1fr",
+        gridTemplateRows:'400px'
+       }
     },
    product:{
      display:'flex',
@@ -199,11 +204,21 @@ const styles=makeStyles()((theme)=>({
     subFurnRight:{
         display:'grid',
         gridTemplateRows:'1fr 1fr',
-        gap:theme.spacing(3)
+        gap:theme.spacing(3),
+        [theme.breakpoints.down('md')]:{
+          gridTemplateColumns:"1fr",
+          gridTemplateRows:'300px'
+         }
     },
     sfBtm:{
         display:'grid',
         gridTemplateColumns:'1fr 1fr',
+        minHeight:'400px',
         gap:theme.spacing(3),
+        [theme.breakpoints.down('md')]:{
+          gridTemplateColumns:"1fr",
+          minHeight:'600px',
+          gridTemplateRows:'1fr 1fr'
+         }
     }
 }))
