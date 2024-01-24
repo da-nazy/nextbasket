@@ -44,7 +44,12 @@ const styles=makeStyles()((theme)=>({
       flexDirection:'row',
       width:'80%',
       justifyContent:'space-between',
-      alignItems:'center'
+      alignItems:'center',
+      [theme.breakpoints.down('sm')]:{
+        flexDirection:'column',
+        alignItems:'flex-start',
+        justifyContent:'space-evenly'
+      }
      },
      bond:{
         color:theme.colors.text_color,
