@@ -87,7 +87,10 @@ sub:{
     gridTemplateColumns:'1fr 1fr',
     gap:theme.spacing(3),
     flex:1,
-    width:'80%'
+    width:'80%',
+    [theme.breakpoints.down('md')]:{
+      gridTemplateColumns:'1fr'
+    }
 },
 hdTxt:{
     color:theme.colors.text_color,
