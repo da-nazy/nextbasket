@@ -61,6 +61,6 @@ letterSpacing:" 0.1px"
      social:{
         display:'flex',
         flexDirection:'row',
-        gap:theme.spacing(2)
+        gap:theme.spacing(2),
      }
 }))

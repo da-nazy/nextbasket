@@ -92,7 +92,7 @@ export default function Footer() {
 <Typography className={classes.formTxt}>
 Lore imp sum dolor Amit
 </Typography>
-</Box>
+</Box> 
 </Box>
      </Box>
      <Box className={classes.subFoot}>
@@ -117,7 +117,15 @@ const styles=makeStyles()((theme)=>({
     display:'grid',
     gridTemplateColumns:'1fr 1fr 1fr 1fr 2fr',
     minHeight:'270',
-    flex:1
+    flex:1,
+    [theme.breakpoints.down('lg')]:{
+      gridTemplateColumns:'1fr 1fr ',
+      gap:theme.spacing(3)
+    },
+    [theme.breakpoints.down('md')]:{
+      gridTemplateColumns:'1fr',
+      gap:theme.spacing(3)
+    }
   },
   subBtn:{
    color:theme.colors.white,
