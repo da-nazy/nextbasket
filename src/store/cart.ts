@@ -9,19 +9,16 @@ export const cartSlice=createSlice({
     initialState,
     reducers:{
      ADD_CART:(state,action)=>{
-        console.log(action.payload,"check payload");
-        let isExist=state.find(action.payload.id);
-        console.log(isExist,'isExist')
+        let isExist;
+        if(state.length>0){
+            isExist=state.find((value)=>value.id===action.payload.id);
+        }
         if(!isExist){
             let newvalue=state;
             newvalue.push(action.payload);
             Storage.saveItem(StorageKey.Cart,newvalue);
             state=newvalue;
-        }else{
-            console.log("value not exist",action.payload);
         }
-       
-        
      },
      REMOVE_CART:(state,action)=>{
         let value=state.filter((value)=>value.id!==action.payload.id);

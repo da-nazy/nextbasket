@@ -31,7 +31,7 @@ export default function ProductCarousel({data}:props) {
      )}>
       {data&&data.map((value,i)=>{
         return(
-          <Image  key={i} src={value} fill alt="product image" />
+          <img style={{width:'100%',height:'100%'}} key={i} src={value}  alt="product image" />
         )
       })}
     </Carousel>

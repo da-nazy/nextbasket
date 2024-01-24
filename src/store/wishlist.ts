@@ -9,17 +9,16 @@ export const wishlistSlice=createSlice({
     initialState,
     reducers:{
      ADD_WISHLIST:(state,action)=>{
-        let isExist=state.find(action.payload.id);
+        let isExist;
+        if(state.length>0){
+            isExist=state.find((value)=>value.id===action.payload.id);
+        }
         if(!isExist){
             let newvalue=state;
-            newvalue.push(action.payload.data);
+            newvalue.push(action.payload);
             Storage.saveItem(StorageKey.Wishlist,newvalue);
             state=newvalue;
-        }else{
-            console.log("value not exist",action.payload);
         }
-       
-        
      },
      REMOVE_WISHLIST:(state,action)=>{
         let value=state.filter((value)=>value.id!==action.payload.id);

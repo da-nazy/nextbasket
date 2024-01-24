@@ -20,15 +20,15 @@ import { useMutation } from 'react-query';
 import useToastAlert from '../hooks/useToastAlert';
 import { UseDispatch,useDispatch,useSelector } from 'react-redux';
 import { ADD_CART } from '@/store/cart';
+import { ADD_WISHLIST } from '@/store/wishlist';
 export default function ProductSection() {
     const theme=useTheme();
     const {classes}=styles();
     const query=useParams();
     const alert=useToastAlert();
     const [singleProduct,setSingleProduct]=React.useState<product>();
-    const cartList=useSelector((appStore:appStore)=>appStore);
+   
     const dispatch=useDispatch();
-    console.log(cartList,"check cart");
     const{isLoading:isOneProductLoading,mutate:getOneProduct}=useMutation(getProduct,{
       onSuccess:(data)=>{
         console.log(data);
@@ -50,10 +50,12 @@ export default function ProductSection() {
    
      const handleCart=()=>{
      dispatch(ADD_CART(singleProduct));
+     alert({message:"Added to cart",type:"success"})
      }
 
      const handleWishList=()=>{
-
+      dispatch(ADD_WISHLIST(singleProduct));
+      alert({message:"Added to wishlist",type:"success"})
      }
 
   return (
@@ -81,10 +83,7 @@ export default function ProductSection() {
                  
                 )
               })
-            }
-          
-           <Image src={thumb2.src} width={100} height={75} alt="product image" />
-         
+            } 
            </Box>
          </Box>
          <Box className={classes.desc}>
@@ -125,7 +124,7 @@ export default function ProductSection() {
                     </Button>
                     <Box className={classes.icoBtnCont}>
                         <IconButton className={classes.icoBtn}>
-                          <Image width={20} height={20} src={love.src} alt="favourite"/> 
+                          <Image width={20} height={20} src={love.src} onClick={()=>handleWishList()} alt="favourite"/> 
                         </IconButton>
                         <IconButton className={classes.icoBtn} onClick={()=>handleCart()}>
                           <Image width={20} height={20} src={cart.src} alt="cart"/> 

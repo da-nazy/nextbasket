@@ -20,12 +20,16 @@ import SwipeableTemporaryDrawer from '../drawer';
 import SwipeDrawer from '../drawer';
 import Wishlist from '../whislist';
 import Cart from '../cart';
-
+import { useSelector } from 'react-redux';
+import { appStore } from '../util';
 export default function Header() {
     const theme=useTheme();
     const {classes}=styles();
     const [cartDrawer,setcartDrawer]=useState<boolean>(false);
     const [wishDrawer,setwishDrawer]=useState<boolean>(false);
+    const cartList=useSelector((appStore:appStore)=>appStore.cart);
+    const wishList=useSelector((appStore:appStore)=>appStore.wishlist);
+
   return (
     <Box>
     <AppBar position="fixed" color="secondary" className={classes.mainHeader}>
@@ -84,11 +88,11 @@ export default function Header() {
                 </IconButton>
                 <IconButton className={classes.icoBtn} onClick={()=>setcartDrawer(!cartDrawer)}>
                 <Image src={cart.src} width={16} height={16} alt='cart'/>
-                <Typography className={classes.icoTxt} color="primary">1</Typography>
+                <Typography className={classes.icoTxt} color="primary">{cartList.length}</Typography>
                 </IconButton>
                 <IconButton className={classes.icoBtn} onClick={()=>setwishDrawer(!wishDrawer)}>
                 <Image src={love.src} width={16} height={16} alt='love'/>
-                <Typography className={classes.icoTxt} color="primary">1</Typography>
+                <Typography className={classes.icoTxt} color="primary">{wishList.length}</Typography>
                 </IconButton>
             </Box>
         </Box>
