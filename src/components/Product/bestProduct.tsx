@@ -71,7 +71,7 @@ export default function Bestproduct() {
         <Box className={classes.products}>
         {products?.products&&products?.products.length>0&&products?.products.map((value,key)=>{
           return(
-            <BestProductCard key={value?.id} discountPercentage={value.discountPercentage}  price={value.price} category={value.category} image={value.thumbnail} title={value.title}/>
+            <BestProductCard action={()=>router.push(`/products/${value.id}`)} key={value?.id} discountPercentage={value.discountPercentage}  price={value.price} category={value.category} image={value.thumbnail} title={value.title}/>
           )
         })}
       

@@ -6,13 +6,14 @@ type props={
     title?:string,
     category?:string,
     price?:number,
-    discountPercentage?:number
+    discountPercentage?:number,
+    action?:()=>void
 }
-export default function BestProductCard({image,title,category,price,discountPercentage}:props) {
+export default function BestProductCard({image,title,category,price,discountPercentage,action}:props) {
     const theme=useTheme();
     const {classes}=styles();
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} onClick={()=>action&&action()}>
      <Box className={classes.imgCont}
      style={{
         backgroundImage:`url("${image}")`,
@@ -40,6 +41,9 @@ const styles=makeStyles()((theme)=>({
      display:'flex',
      flexDirection:'column',
      height:'400px',
+     "&:hover":{
+        cursor:'pointer'
+     }
     },
     imgCont:{
         height:"238px"

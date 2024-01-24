@@ -48,7 +48,7 @@ const {isLoading:isGetProducts}=useQuery('getProducts',
   setProductQuery(false);
   if(error){
     let temp:{[key:string]:any}=error;
-      console.log(error);
+   
     alert({message:temp.mesage,type:'error'})
   }
   if(data as allProducts){
@@ -77,7 +77,6 @@ const handlePageChange=()=>{
 
 useEffect(()=>{
 setProductQuery(true);
-console.log("allProducts")
 },[]);
 
   return (
