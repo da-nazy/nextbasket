@@ -31,14 +31,14 @@ export default function Header() {
     const wishList=useSelector((appStore:appStore)=>appStore.wishlist);
 
   return (
-    <Box>
+    <Box className={classes.container}>
     <AppBar position="fixed" color="secondary" className={classes.mainHeader}>
       <Box className={classes.mainCont}>
         <Box className={classes.phoneMail}>
             <Box className={classes.mail}> <Image src={phone.src} width={16} height={16} alt='phone'/><Typography className={classes.phoneTxt}>(225) 555-0118</Typography></Box>
             <Box className={classes.phone}> <Image src={mail.src} width={16} height={16} alt='mail'/><Typography className={classes.phoneTxt}>michelle.rivera@example.com</Typography></Box>
         </Box>
-        <Box> 
+        <Box className={classes.phoneTxtCont}> 
             <Typography className={classes.phoneTxt}>Follow Us  and get a chance to win 80% off</Typography>
             
         </Box>
@@ -71,7 +71,7 @@ export default function Header() {
              <Typography className={classes.bdTxt}>
             Bandage
             </Typography></Box>
-        <Box>
+        <Box className={classes.navCont}>
              <Button className={classes.navBtn}>Home</Button>
              <Button  className={classes.navBtnFocus} endIcon={<ExpandMoreOutlinedIcon/>}>Shop</Button>
              <Button className={classes.navBtn}>About</Button>
@@ -105,12 +105,24 @@ export default function Header() {
 
 const styles=makeStyles()((theme)=>({
     container:{
-
+   
     },
     icoCont:{
     display:'flex',
     flexDirection:'row',
     gap:theme.spacing(2)
+    },
+    phoneTxtCont:{
+    [theme.breakpoints.down('lg')]:{
+        display:'none !important',
+       
+    }
+    },
+    navCont:{
+     [theme.breakpoints.between('xs',935)]:{
+      //  border:'1px solid red',
+      //  backgroundColor:'green'
+     }
     },
     icoTxt:{
         fontSize: "12px",
@@ -200,7 +212,10 @@ letterSpacing:"0.1px",
         display:'flex',
         flexDirection:'row',
         alignItems:'center',
-        gap:theme.spacing(2) 
+        gap:theme.spacing(2) ,
+        [theme.breakpoints.down('md')]:{
+            display:'none !important'
+        }
     },
     phoneTxt:{
         color:theme.colors.light_text_color,   
@@ -214,7 +229,10 @@ letterSpacing:"0.1px",
         height:'60px',
         display:'flex',
         flexDirection:'row',
-        justifyContent:'center'
+        justifyContent:'center',
+        [theme.breakpoints.down('sm')]:{
+            display:'none !important'
+        }
     },
     mainCont:{
         width:'90%',
