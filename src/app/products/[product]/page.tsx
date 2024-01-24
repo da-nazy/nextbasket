@@ -5,7 +5,7 @@ import HomeWrapper from '@/components/home/wrapper';
 import OneProduct from '@/components/Product/oneProduct';
 export default function page() {
   return (
-    <HomeWrapper>
+    <HomeWrapper isProductDetailPage={true}>
         <OneProduct/>
     </HomeWrapper>
   )

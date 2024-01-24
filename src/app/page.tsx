@@ -6,7 +6,7 @@ import HomeComp from "@/components/home";
 
 export default function Home() {
   return (
-     <HomeWrapper>
+     <HomeWrapper isProductDetailPage={false}>
       <HomeComp/>
      </HomeWrapper>
   );

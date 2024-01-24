@@ -7,15 +7,16 @@ import Footer from '../footer';
 
 
 type props={
-    children:React.ReactNode
+    children:React.ReactNode,
+    isProductDetailPage?:boolean
 }
 
-export default function HomeWrapper({children}:props) {
+export default function HomeWrapper({children,isProductDetailPage}:props) {
     const theme=useTheme();
     const {classes}=styles();
   return (
   <Box className={classes.container}>
-     <Header/>
+     <Header isProductDetailPage={isProductDetailPage}/>
     <Box className={classes.child}>
          {children} 
     </Box>

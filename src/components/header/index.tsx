@@ -1,5 +1,5 @@
 "use client"
-import { AppBar, Box, Button, IconButton, Toolbar, Typography, useTheme } from '@mui/material';
+import { AppBar, Box, Button, ClickAwayListener, IconButton, Popper, Toolbar, Typography, useTheme } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
@@ -16,7 +16,7 @@ import cart from '../../assets/img/subhead/cart.png';
 import user from '../../assets/img/subhead/user.png';
 
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
-import SwipeableTemporaryDrawer from '../drawer';
+
 import SwipeDrawer from '../drawer';
 import Wishlist from '../whislist';
 import Cart from '../cart';
@@ -27,15 +27,32 @@ import { appStore } from '../util';
 import ic_menu from '../../assets/img/homenav/ic_menu.png'
 import ic_cart from '../../assets/img/homenav/ic_cart.png'
 import ic_search from '../../assets/img/homenav/ic_search.png'
-
-export default function Header() {
+import ProductNavMobile from '../mobileNav/product';
+import ProductDetailMobileNav from '../mobileNav/detail';
+type props={
+    isProductDetailPage?:boolean
+}
+export default function Header({isProductDetailPage}:props) {
     const theme=useTheme();
     const {classes}=styles();
     const [cartDrawer,setcartDrawer]=useState<boolean>(false);
     const [wishDrawer,setwishDrawer]=useState<boolean>(false);
     const cartList=useSelector((appStore:appStore)=>appStore.cart);
     const wishList=useSelector((appStore:appStore)=>appStore.wishlist);
-
+    const[mobileEl,setMobileEl]=useState<null|HTMLElement>(null);
+    const[mobileElProduct,setMobileElProduct]=useState<null|HTMLElement>(null);
+    const closeMobile=()=>{
+        setMobileEl(null);
+      }
+      const handleMobile=(event:React.MouseEvent<HTMLElement>)=>{
+        setMobileEl(mobileEl?null:event.currentTarget);
+      }
+      const closeMobileProduct=()=>{
+        setMobileElProduct(null);
+      }
+      const handleMobileProduct=(event:React.MouseEvent<HTMLElement>)=>{
+        setMobileElProduct(mobileElProduct?null:event.currentTarget);
+      }
   return (
     <Box className={classes.container}>
     <AppBar position="fixed" color="secondary" className={classes.mainHeader}>
@@ -102,18 +119,43 @@ export default function Header() {
                 </IconButton>
             </Box>
         </Box>
+        {/** for mobile view home*/}
+        {isProductDetailPage?<Box className={classes.homeNav}>
+        <ClickAwayListener onClickAway={closeMobileProduct}>
+      
+      <Box>
+      <IconButton onClick={handleMobileProduct}>
+         <Image src={ic_menu.src} width={23} height={23} alt='search'/>
+         </IconButton>
+      <Popper open={Boolean(mobileElProduct)} anchorEl={mobileElProduct}>
+       <ProductDetailMobileNav/>
+       </Popper>
+      </Box>
+ 
+ </ClickAwayListener>
+        </Box>:
         <Box className={classes.homeNav}>
                 <IconButton>
-                <Image src={ic_search.src} width={24} height={24} alt='search'/>
+                <Image src={ic_search.src} width={23} height={23} alt='search'/>
                 </IconButton>
                 <IconButton>
-                <Image src={ic_cart.src} width={24} height={24} alt='search'/>
+                <Image src={ic_cart.src} width={23} height={23} alt='search'/>
                 </IconButton>
-                <IconButton>
-                <Image src={ic_menu.src} width={24} height={24} alt='search'/>
+                <ClickAwayListener onClickAway={closeMobile}>
+      
+             <Box>
+             <IconButton onClick={handleMobile}>
+                <Image src={ic_menu.src} width={23} height={23} alt='search'/>
                 </IconButton>
+        <Popper open={Boolean(mobileEl)} anchorEl={mobileEl}>
+               <ProductNavMobile/>
+              </Popper>
+             </Box>
+        
+        </ClickAwayListener>
+                
                
-        </Box>
+        </Box>}
      </Box>
      </Box>
      
