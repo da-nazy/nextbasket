@@ -94,7 +94,10 @@ const styles=makeStyles()((theme)=>({
      display:'flex',
      flexDirection:'column',
      gap:theme.spacing(2),
-     backgroundColor:theme.colors.light_gray
+     backgroundColor:theme.colors.light_gray,
+     [theme.breakpoints.down('sm')]:{
+      width:'90vw'
+     }
     },
     removeAdd:{
      display:'flex',

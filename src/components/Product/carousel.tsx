@@ -13,9 +13,7 @@ export default function ProductCarousel({data}:props) {
   
   return (
     <Carousel 
-    style={{
-      height:"450px",
-    }}
+   
     
     defaultControlsConfig={
       {

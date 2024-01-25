@@ -72,7 +72,6 @@ export default function ProductSection() {
         <Box className={classes.sub}>
          <Box className={classes.imgcont}>
            <Box className={classes.img}>
-
             <ProductCarousel data={singleProduct?.images}/>
            </Box>
            <Box className={classes.thumb}>
@@ -242,12 +241,14 @@ const styles=makeStyles()((theme)=>({
        gridTemplateColumns:'1fr 1fr',
        gap:theme.spacing(4),
        [theme.breakpoints.down('lg')]:{
-        gridTemplateColumns:'1fr'
+        gridTemplateColumns:'1fr',
+        border:'1px solid red',
+        alignItems:'center'
        }
     },
     imgcont:{
       display:'grid',
-      width:'80%'
+       gridTemplateColumns:'1fr'
     },
     thumb:{
     display:'flex',
