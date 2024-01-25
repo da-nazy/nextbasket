@@ -241,6 +241,7 @@ const styles=makeStyles()((theme)=>({
        height:'auto',
        display:'grid',
        gridTemplateColumns:'1fr 1fr',
+       paddingBottom:theme.spacing(2),
        gap:theme.spacing(4),
        [theme.breakpoints.down('lg')]:{
         gridTemplateColumns:'1fr',
@@ -273,7 +274,7 @@ const styles=makeStyles()((theme)=>({
         paddingTop:theme.spacing(3),
         display:'grid',
         gridTemplateRows:'1fr 1fr',
-        height:'450px'
+        height:'450px',
     },
     action:{
         display:'flex',
