@@ -53,7 +53,7 @@ export default function Wishlist({handleClose}:props) {
 }
 const styles=makeStyles()((theme)=>({
     container:{
-     
+     width:'100%',
      padding:theme.spacing(3),
      display:'flex',
      flexDirection:'column',
