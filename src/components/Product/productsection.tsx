@@ -78,8 +78,8 @@ export default function ProductSection() {
             {
               singleProduct?.images?.map((value,key)=>{
                 return(
-                 <Box className={classes.thumbImg}>
-                   <Image key={key} src={value} fill alt="product image" />
+                 <Box className={classes.thumbImg} key={key}>
+                   <Image  src={value} fill alt="product image" />
                 
                   </Box> 
                 )
