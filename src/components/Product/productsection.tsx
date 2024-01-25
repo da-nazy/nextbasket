@@ -78,8 +78,10 @@ export default function ProductSection() {
             {
               singleProduct?.images?.map((value,key)=>{
                 return(
-                  <Image key={key} src={value} width={100} height={75} alt="product image" />
-                 
+                 <Box className={classes.thumbImg}>
+                   <Image key={key} src={value} fill alt="product image" />
+                
+                  </Box> 
                 )
               })
             } 
@@ -236,30 +238,36 @@ const styles=makeStyles()((theme)=>({
     },
     sub:{
        width:'80%',
-       minHeight:'500px',
+       height:'auto',
        display:'grid',
        gridTemplateColumns:'1fr 1fr',
        gap:theme.spacing(4),
        [theme.breakpoints.down('lg')]:{
         gridTemplateColumns:'1fr',
-        border:'1px solid red',
-        alignItems:'center'
+        alignItems:'center',
+        
        }
     },
     imgcont:{
       display:'grid',
-       gridTemplateColumns:'1fr'
+       gridTemplateColumns:'1fr',
+       height:'auto'
     },
     thumb:{
     display:'flex',
     flexDirection:'row',
     gap:theme.spacing(4),
     marginTop:theme.spacing(3),
-   
+    flexWrap:'wrap',
+    },
+    thumbImg:{
+      height:'75px',
+      position:'relative',
+      width:'100px'
     },
     img:{
      position:'relative',
-     height:'450px'
+     height:'auto'
     },  
     desc:{
         paddingTop:theme.spacing(3),
