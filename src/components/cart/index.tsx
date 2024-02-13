@@ -9,7 +9,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { appStore, product } from '../util';
 import { REMOVE_CART,INCREMENT_CART, DECREMENT_CART } from '@/store/cart';
 import useToastAlert from '../hooks/useToastAlert';
-
+import { usePaystackPayment } from 'react-paystack';
 type props={
     handleClose:()=>void
 }
@@ -37,6 +37,44 @@ export default function Cart({handleClose}:props) {
   const handleDecrement=(item:product)=>{
    dispatch(DECREMENT_CART(item))
   }
+
+  const onClose = () => {
+    // Your function implementation here
+    console.log("test")
+};
+    const onSuccess=(reference:{[key:string]:any})=>{
+      console.log(reference)
+      const data= {
+        amount:200,
+        gateway: { currency: 'NGN' },
+        paymentGateway:"PAYSTACK",
+        paymentMethod: 'GATEWAY',
+        trxref: reference?.trxref,
+        // @ Change Wallet
+    };
+
+    console.log(data);
+
+   
+    }
+
+   const PAYSTACK_KEY = process.env.NEXT_PUBLIC_PAYSTACK_KEY as string;
+
+   const config={
+    reference: "Ivanka-Order-1707829921",
+    email:"danielani660@gmail.com",
+    publicKey:PAYSTACK_KEY,
+    amount:350*100
+   }
+
+   const initializePayment = usePaystackPayment(config);
+
+
+  const handleCheckout=()=>{
+    console.log('handleCheckout');
+    initializePayment(onSuccess,onClose)
+  }
+
   return (
   <Box className={classes.container}>
     <Box className={classes.head}>
@@ -52,7 +90,7 @@ export default function Cart({handleClose}:props) {
       cartList.map((value)=>{
         return(
           <Paper key={value.id} className={classes.card}>
-      <Image width={100} height={100} alt="products" src={product1}/>
+      <Image width={100} height={100} alt="products" src={value?.thumbnail?value.thumbnail:product1}/>
        <Box>
          <Typography className={classes.name}>{value.title}</Typography>
          <Typography className={classes.price}>${value.price}</Typography>
@@ -80,7 +118,7 @@ export default function Cart({handleClose}:props) {
         <Typography className={classes.price}>${totalPrice()}</Typography>
     </Box>
     <Box className={classes.btnCont}>
-        <Button className={classes.btn} fullWidth variant="contained">CHECKOUT</Button>
+        <Button className={classes.btn} onClick={()=>handleCheckout()}  fullWidth variant="contained">CHECKOUT</Button>
     </Box>
   </Box>
 
@@ -167,5 +205,7 @@ letterSpacing:" 0.1px"
     letterSpacing: "0.1px"
 }
 }))
+
+
 
 

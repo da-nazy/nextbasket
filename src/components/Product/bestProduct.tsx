@@ -5,16 +5,6 @@ import { makeStyles } from 'tss-react/mui';
 import BestProductCard from './bestproductcard';
 //products
 
-import product1 from '../../assets/img/product/product1.png'
-import product2 from '../../assets/img/product/product2.png'
-import product3 from '../../assets/img/product/product3.png'
-import product4 from '../../assets/img/product/product4.png'
-import product5 from '../../assets/img/product/product5.png'
-import product6 from '../../assets/img/product/product6.png'
-import product7 from '../../assets/img/product/product7.png'
-import product8 from '../../assets/img/product/product8.png'
-import product9 from '../../assets/img/product/product9.png'
-import product10 from '../../assets/img/product/product10.png'
 import { allProducts, getProduct, getProducts, product } from '../util';
 import { useMutation, useQuery } from 'react-query';
 import { useRouter,useParams } from 'next/navigation';
